@@ -32,7 +32,7 @@ But I'm sure I'm right and it will work.
 0. Examine the certificate chain for every request.
 1. If the `i2p-snakeoil` certificate appears anywhere, reject it and throw the user to an extension page explaining how the user was attacked.
 
-#### And this for hidden services
+#### And this for hidden services:
 
 0. Examine the certificate chain for every request.
 1. If the `i2p-snakeoil` certificate appears anywhere, proceed to:
