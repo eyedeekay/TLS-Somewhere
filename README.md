@@ -36,7 +36,7 @@ If the key for the TLS certificate could not have been created without the key f
 
 ## What?
 
-I don't blame you. So what we've done here is:
+I don't blame you. So what we've done here, hypothetically, is:
 
 1. Tricked Firefox into accepting any certificate signed by our fake CA.
 2. Added a browser extension which *rejects* the fake CA for clearnet sites.
