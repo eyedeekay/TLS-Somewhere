@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Test extension",
+    "version": "1.0",
+    "description": "Test extension.",
+    "icons": {
+        "48": "icons/border-48.png"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>"
+    ]
+}
