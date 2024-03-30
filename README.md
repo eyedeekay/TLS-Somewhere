@@ -8,10 +8,12 @@ The basic premise is to configure a browser to accept self-signed certificates b
 If the key for the TLS certificate could not have been created without the key for the hidden service, then no message should be presented at all.
 
 Very, very obviously, no one should do this yet.
-None of this works yet.
+None of this works yet and it's extremely dangerous.
+
+## Why?
+
 It deliberately abuses an important security feature to get something the people in charge of that security feature don't actually want.
 It is **genuinely** a bizarre idea.
-
 But I'm sure I'm right and it will work.
 
 ## How?
@@ -47,9 +49,16 @@ I don't blame you. So what we've done here, hypothetically, is:
 
 1. Tricked Firefox into accepting any certificate signed by our fake CA.
 2. Added a browser extension which *rejects* the fake CA for clearnet sites.
-3. Created new rules for hidden services, moving the *real* authority behind the certificate to the hidden service itself, i.e. it's own private keys.
+3. Used the browser extension to create new rules for hidden services, moving the *real* verification authority behind the certificate back to the hidden service itself, i.e. it's own private keys.
 4. Made exceptions for the `i2p-snakeoil` certificate ephemeral, lasting only the length of a browsing session.
 5. Leave the behavior of other self-signed certificates unchanged.
+
+## Questions?
+
+- `Q. ` Why not a real CA?
+- `A. ` It shouldn't be necessary. Also, do you want to run it? I sure don't.
+- `Q. ` Why not in I2PIPB/OICT?
+- `A. ` Because it depends on adding the super-dangerous `i2p-snakeoil` certificate, which is probably too dangerous to put in your regular browser where I2PIPB and OICT would normally go.
 
 ##### Credit:
 
