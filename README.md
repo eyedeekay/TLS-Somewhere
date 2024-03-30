@@ -7,25 +7,32 @@ Would work for I2P or Tor.
 The basic premise is to configure a browser to accept self-signed certificates by default, then configure a browser extension to reject them and present it's own messages instead.
 If the key for the TLS certificate could not have been created without the key for the hidden service, then no message should be presented at all.
 
+Very, very obviously, no one should do this yet.
+None of this works yet.
+It deliberately abuses an important security feature to get something the people in charge of that security feature don't actually want.
+It is **genuinely** a bizarre idea.
+
+But I'm sure I'm right and it will work.
+
 ## How?
 
-### Create a **really** dangerous web browser:
+### First, create a **really** dangerous web browser:
 
 0. Create a `i2p-snakeoil` certificate authority and add it to [cert9.db](https://manpages.debian.org/testing/libnss3-tools/certutil.1.en.html) for a [`single browser profile`](https://github.com/eyedeekay/i2p.plugins.firefox).
-1. Distribute it's keys **everywhere** you need them, public and private. **Obviously** this makes it's real utility as a CA worse than zero, because at this point anyone can sign a certificate for any site anywhere and your single-browser-profile will accept it because you have an intentionally compromised CA. But this is essential, because they took away the `about:config` option to disable TLS verification in 2018, and [`webRequest.getSecurityInfo()` does not return an array of certificates if the certificate was self-signed](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/SecurityInfo)*.
-2. Let anyone, anywhere sign a site certificate with them.
+1. Distribute it's keys **everywhere** you need them, public and private. **Obviously** this makes it's real utility as a CA worse than zero, because at this point anyone can sign a certificate for any site anywhere and your single-browser-profile will accept it because you have an intentionally compromised CA. That scary thing you thought when you read the last sentence **is** the thing I am talking about. Be afraid, be very afraid.*
+2. Let **anyone**, **anywhere** sign **any** site certificate with them.
 
-### Fix it with a browser extension:
+### Then, fix it with a browser extension:
 
 0. Add TLS-Somewhere to `single browser profile`.
 1. TLS-Somewhere implements TLS verification, with a twist:
 
-#### For clearnet sites:
+#### By doing this for clearnet sites:
 
 0. Examine the certificate chain for every request.
 1. If the `i2p-snakeoil` certificate appears anywhere, reject it and throw the user to an extension page explaining how the user was attacked.
 
-#### For hidden services
+#### And this for hidden services
 
 0. Examine the certificate chain for every request.
 1. If the `i2p-snakeoil` certificate appears anywhere, proceed to:
@@ -51,5 +58,6 @@ I don't blame you. So what we've done here, hypothetically, is:
 ```
 
 ```md
-*Mozilla, I get that you're not building for power-users but you sure are bumming them out.
+*But this is essential, because they took away the `about:config` option to disable TLS verification in 2018, and [`webRequest.getSecurityInfo()` does not return an array of certificates if the certificate was self-signed](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/SecurityInfo). So to get the primitives that we need to accomplish this, we need to trick Firefox.**
+**Mozilla, I get that you're not building for power-users but you sure are bumming them out.
 ```
