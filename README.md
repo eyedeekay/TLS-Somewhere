@@ -21,7 +21,7 @@ But I'm sure I'm right and it will work.
 ### First, create a **really** dangerous web browser:
 
 0. Create a `i2p-snakeoil` certificate authority and add it to [cert9.db](https://manpages.debian.org/testing/libnss3-tools/certutil.1.en.html) for a [`single browser profile`](https://github.com/eyedeekay/i2p.plugins.firefox).
-1. Distribute it's keys **everywhere** you need them, public and private. **Obviously** this makes it's real utility as a CA worse than zero, because at this point anyone can sign a certificate for any site anywhere and your single-browser-profile will accept it because you have an intentionally compromised CA. That scary thing you thought when you read the last sentence **is** the thing I am talking about. Be afraid, be very afraid.*
+1. Distribute it's keys **everywhere** you need them, public and private. **Obviously** this makes it's real utility as a CA worse than zero, because at this point anyone can sign a certificate for any site anywhere and your single-browser-profile will accept it because you have an intentionally compromised CA. That scary thing you thought when you read the last sentence **is** the thing I am talking about. Be afraid, be very afraid.`*`
 2. Let **anyone**, **anywhere** sign **any** site certificate with them.
 
 ### Then, fix it with a browser extension:
@@ -62,11 +62,13 @@ I don't blame you. So what we've done here, hypothetically, is:
 
 ##### Credit:
 
-```md
 [Example code provided by this Stack Exchange thread:](https://stackoverflow.com/questions/2402121/within-a-web-browser-is-it-possible-for-javascript-to-obtain-information-about)
-```
 
-```md
-*But this is essential, because they took away the `about:config` option to disable TLS verification in 2018, and [`webRequest.getSecurityInfo()` does not return an array of certificates if the certificate was self-signed](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/SecurityInfo). So to get the primitives that we need to accomplish this, we need to trick Firefox.**
-**Mozilla, I get that you're not building for power-users but you sure are bumming them out.
-```
+##### Footnotes:
+
+`*`This is essential, because they took away the `about:config` option to disable TLS verification in 2018
+and [`webRequest.getSecurityInfo()` does not return an array of certificates if the certificate was self-signed](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/SecurityInfo).
+So to get the primitives that we need to accomplish this, we need to trick Firefox.`**`
+
+`**`Mozilla, I get that you're not building for power-users but you sure are bumming them out.
+
