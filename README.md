@@ -16,6 +16,10 @@ It deliberately abuses an important security feature to get something the people
 It is **genuinely** a bizarre idea.
 But I'm sure I'm right and it will work.
 
+### No Really Why?
+
+see: http://zzz.i2p/topics/3303-webtorrent-on-i2p
+
 ## How?
 
 ### First, create a **really** dangerous web browser:
@@ -66,8 +70,6 @@ I don't blame you. So what we've done here, hypothetically, is:
 
 ##### Footnotes:
 
-`*`This is essential, because they took away the `about:config` option to disable TLS verification in 2018
-and [`webRequest.getSecurityInfo()` does not return an array of certificates if the certificate was self-signed](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/SecurityInfo).
-So to get the primitives that we need to accomplish this, we need to trick Firefox.`**`
+`*`This is essential, because they took away the `about:config` option to disable TLS verification in 2018 and [`webRequest.getSecurityInfo()` does not return an array of certificates if the certificate was self-signed](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest/SecurityInfo). So to get the primitives that we need to accomplish this, we need to trick Firefox.`**`
 
 `**`Mozilla, I get that you're not building for power-users but you sure are bumming them out.
