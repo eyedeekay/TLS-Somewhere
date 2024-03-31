@@ -71,4 +71,3 @@ and [`webRequest.getSecurityInfo()` does not return an array of certificates if 
 So to get the primitives that we need to accomplish this, we need to trick Firefox.`**`
 
 `**`Mozilla, I get that you're not building for power-users but you sure are bumming them out.
-
